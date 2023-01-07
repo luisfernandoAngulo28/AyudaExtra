@@ -1,0 +1,95 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Negocio;
+
+/**
+ *
+ * @author HP
+ */
+public class vectorBitG {
+
+    int v[];
+    int cant;
+    int cbits;
+    int ri; // valor inicial de nuestro Universo de datos
+    int rf; // valor final de nuestro Universo de datos
+
+    public vectorBitG(int cant, int ri, int rf) {
+        int x = (rf - ri) + 1;
+        this.cbits = (int) Math.floor(((Math.log10(x)) / Math.log10(2)) + 1);
+        int y = ((cant * cbits) % 32);
+        int z = ((cant * cbits) / 32);
+        if (y == 0) {
+            this.v = new int[z];
+        } else {
+            z++;
+            this.v = new int[z];
+        }
+        this.cant = cant;
+        this.ri = ri;
+        this.rf = rf;
+        for (int i = 0; i < z; i++) {
+            v[i] = 0;
+        }
+    }
+
+    private int nEntero(int pos) {
+        return (((pos - 1) * cbits) / 32);
+    }
+
+    private int nBits(int pos) {
+        return (((pos - 1) * cbits) % 32) + 1;
+    }
+
+    public void setDato(int valor, int pos) {
+        if (pos <= cant && valor >= ri && valor <= rf) {
+            int x = nEntero(pos);
+            int y = nBits(pos);
+            int valor1 = valor;
+            int w = (int) (Math.pow(2, cbits) - 1);
+            w = w << (y - 1);
+            w = ~w;
+            v[x] = v[x] & w;
+            valor = valor << (y - 1);
+            v[x] = v[x] | valor;
+            int z = (((y - 1) + cbits) - 32);
+            if (z > 0) {
+                v[x + 1] = v[x + 1] >>> z;
+                v[x + 1] = v[x + 1] << z;
+                valor1 = valor1 >>> (cbits - z);
+                v[x + 1] = v[x + 1] | valor1;
+            }
+        }
+    }
+
+    public int getDato(int pos) throws Exception {
+        if (pos <= cant) {
+            int x = nEntero(pos);
+            int y = nBits(pos);
+            int n = v[x];
+            n = n >>> (y - 1);
+            int w = (int) (Math.pow(2, cbits) - 1);
+            n = n & w;
+            int z = (((y - 1) + cbits) - 32);
+            if (z > 0) {
+                int n1 = v[x + 1];
+                n1 = n1 & ((cbits + z) - 1);
+                n1 = n1 << (z - 1);
+                n = n | n1;
+            }
+            return n;
+        }
+        throw new Exception("Error : Posicion fuera de Rango");
+    }
+
+    public String Mostrar() throws Exception {
+        String S = "";
+        for (int i = cant; i > 0; i--) {
+            S = S + getDato(i) + ",";
+
+        }
+        return S;
+    }
+}

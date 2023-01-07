@@ -1,0 +1,33 @@
+Primer parcial II/2013, Estructuras de Datos con el Ing. Mario Campos.
+
+1.- Crear una clase bitwise para contener los caracteres
+ en minuscula de la 'a' hasta la 'z' (incluyendo 'ñ',',','.','space')
+
+R.- lo construí usando la Clase Bitwise por Valor Genérico
+ (BitwiseVG), y con la ayuda de los caracteres ascii, también
+ usando un vector auxiliar para los carácteres que no son minúsculas, 
+ y ñ VC('ñ',',','.','space').
+
+2.- En la estructuctura de datos PILA, implementar un método 
+para verificar si dos pilas (A y B, por ejemplo) son simétricas
+ entre sí, usando como máximo una estructura de pila auxiliar.
+
+EJEMPLO:
+
+A[1,2,5,4] es simétrica con B[4,5,2,1]. 
+
+Si las pilas fueran iguales, también se cumpliría la condición.
+
+En el programa que les paso, NO SE USA NINGUNA PILA AUXILIAR 
+aparte de las comparadas. Funciona con 2 métodos RECURSIVOS 
+(que resultaron bastante cortos, pero exhaustivos).
+
+
+
+
+
+
+
+
+Gabriel Arnoldo Martínez
+13/10/2013

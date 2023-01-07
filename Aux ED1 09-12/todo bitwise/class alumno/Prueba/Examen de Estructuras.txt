@@ -1,0 +1,14 @@
+Hacer la mejor representacion para la clase Alumno.
+
+sexo	M - F  ****1bits
+carrera	<Informatica, Redes o Sistemas> **2bits
+Registro 1 - 50 ** 6bits
+Edad 10 - 80**********entra primero
+Semestre 1 - 10 **4bits
+
+MAXIMA CANTIDAD DE ALUMNOS -> 50
+
+Insertar de manera ordenada utilizando el registro.
+
+
+Eliminar Todos los estudiantes de un semestre.
